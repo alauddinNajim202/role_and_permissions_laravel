@@ -17,12 +17,12 @@
             </li>
 
 
-            <li class="sidebar-item">
+            <li class="sidebar-item active">
                 <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link" aria-expanded="true">
                     <i class="align-middle" data-feather="sliders"></i> <span
                     class="align-middle">Role</span>
                 </a>
-                <ul id="ui" class="sidebar-dropdown  collapse " data-bs-parent="#sidebar" style="">
+                <ul id="ui" class="sidebar-dropdown  active collapse " data-bs-parent="#sidebar" style="">
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{route('permissions.index')}}">list </a>
                     </li>

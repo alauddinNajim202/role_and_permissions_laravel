@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -11,7 +13,11 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('backend.permission.index');
+        // Get all permissions
+        $permissions = Permission::all();
+        // Pass the permissions to the view for display
+        return view('backend.permission.index', compact('permissions'));
+
     }
 
     /**
@@ -19,7 +25,8 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('backend.permission.create');
     }
 
     /**
@@ -27,7 +34,29 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255|unique:permissions,name',
+
+        ]);
+
+
+        // Create a new permission
+        $permission = Permission::create([
+            'name' => $request->name,
+
+        ]);
+
+        // Redirect to the permission index page
+        return redirect()->route('permissions.index')->with('success','Permission has been created successfully');
+
+
+
+
+
+
+
     }
 
     /**
