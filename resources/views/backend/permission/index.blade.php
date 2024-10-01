@@ -49,6 +49,35 @@
 
 
                 </table>
+                <!-- pagination -->
+                @if ($permissions->lastPage() > 1)
+                    <div class="d-flex justify-content-center">
+                        <div class="pagination">
+                            @if ($permissions->currentPage() > 1)
+                                <a class="page-link" href="{{ $permissions->url($permissions->currentPage() - 1) }}">Previous</a>
+                            @endif
+
+                            @for ($page = 1; $page <= $permissions->lastPage(); $page++)
+                                @if ($page == $permissions->currentPage())
+                                    <span class="page-link active">{{ $page }}</span>
+                                @else
+                                    <a class="page-link" href="{{ $permissions->url($page) }}">{{ $page }}</a>
+                                @endif
+                            @endfor
+
+                            @if ($permissions->currentPage() < $permissions->lastPage())
+                                <a class="page-link" href="{{ $permissions->url($permissions->currentPage() + 1) }}">Next</
+                                    </a>
+                            @endif
+                            <!-- show total pages -->
+                            Total: {{ $permissions->lastPage() }}
+                        </div>
+                        <!-- show current page -->
+                        Current page: {{ $permissions->currentPage() }}
+                    </div>
+                    <!-- end pagination -->
+                                    @endif
+
 
 
 

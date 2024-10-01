@@ -14,7 +14,7 @@ class PermissionController extends Controller
     public function index()
     {
         // Get all permissions
-        $permissions = Permission::all();
+        $permissions = Permission::orderBy('created_at', 'asc')->paginate(2);
         // Pass the permissions to the view for display
         return view('backend.permission.index', compact('permissions'));
 
@@ -70,9 +70,13 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        // Get the permission to be edited
+        $permission = Permission::findOrFail($id);
+        // Pass the permission to the view for editing
+        return view('backend.permission.edit', compact('permission'));
+
     }
 
     /**
@@ -80,14 +84,35 @@ class PermissionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255|unique:permissions,name,'.$id,
+
+        ]);
+
+        // Update the permission
+        $permission = Permission::findOrFail($id);
+        $permission->update([
+            'name' => $request->name,
+
+        ]);
+
+        // Redirect to the permission index page
+        return redirect()->route('permissions.index')->with('success','Permission has been updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
-        //
+        // Get the permission to be deleted
+        $permission = Permission::findOrFail($id);
+        // Delete the permission
+        $permission->delete();
+
+        // Redirect to the permission index page
+        return redirect()->route('permissions.index')->with('success','Permission has been deleted successfully');
     }
 }

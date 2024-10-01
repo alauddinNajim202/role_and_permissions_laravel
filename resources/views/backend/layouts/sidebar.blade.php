@@ -17,10 +17,10 @@
             </li>
 
 
-            <li class="sidebar-item active">
+            {{-- <li class="sidebar-item active">
                 <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link" aria-expanded="true">
                     <i class="align-middle" data-feather="sliders"></i> <span
-                    class="align-middle">Role</span>
+                    class="align-middle">Permission</span>
                 </a>
                 <ul id="ui" class="sidebar-dropdown  active collapse " data-bs-parent="#sidebar" style="">
                     <li class="sidebar-item">
@@ -28,8 +28,14 @@
                     </li>
 
                 </ul>
-            </li>
+            </li> --}}
+            <li class="sidebar-item active">
+                <a href="{{ route('permissions.index') }}" class="sidebar-link" aria-expanded="true">
+                    <i class="align-middle" data-feather="sliders"></i> <span
+                    class="align-middle">Permission</span>
+                </a>
 
+            </li>
 
 
 
