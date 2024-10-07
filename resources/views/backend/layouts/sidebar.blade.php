@@ -39,6 +39,16 @@
 
 
 
+            <li class="sidebar-item active">
+                <a href="{{ route('articles.index') }}" class="sidebar-link" aria-expanded="true">
+                    <i class="align-middle" data-feather="sliders"></i> <span
+                    class="align-middle">Article</span>
+                </a>
+
+            </li>
+
+
+
 
 
         </ul>
