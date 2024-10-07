@@ -44,4 +44,12 @@ Route::middleware(['auth'])->group(function () {
      Route::post('/articles/{article}', [App\Http\Controllers\ArticleController::class, 'update'])->name('articles.update');
      Route::get('/articles/{article}', [App\Http\Controllers\ArticleController::class, 'destroy'])->name('articles.destroy');
 
+
+
+    //  user routes for
+     Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+     Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+     Route::post('/users/update/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+
+
 });
